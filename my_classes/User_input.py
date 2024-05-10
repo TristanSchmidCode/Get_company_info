@@ -1,6 +1,4 @@
 import requests
-testing = False
-
 class Input:
     #Makes sure the input is a bool
     def input_bool(prompt: str) ->bool:
@@ -25,61 +23,82 @@ class Input:
             print("Invalid input, requires intigers only.")
             return Input.input_int(prompt,max_value)
         #if the int is out of bounds goes again
-        if test_int > max_value | test_int < 0:
+        if (test_int > max_value) or (test_int < 0):
             return Input.input_int(prompt, max_value)
         #if all the passes are checked, returns the string       
         return return_string
 
 class User_input:
-    def functionType():
+    def get_parameters():
+        print("Chose which parameter you want to search with\n")
+        print("(1)Get Companies with sic code(s)")
+        print("(2)Get Comapnies with name requirement")
+        print("(3)Get Companies with all the above")
+        print("type 1, 2 or 3")
+        function = Input.input_int("Choose Function:", 3)
+
+        if function == "1":
+            return (User_input._get_companys_with_sic_codes())
+        elif function == "2":
+            return (User_input.__get_companys_with_name())
+        elif function == "3":
+            param_list = []
+
+            sic_codes = User_input._get_companys_with_sic_codes() 
+            #the api breakes if you use an empty array, so this prevnents the user from sending one
+            if sic_codes != False:
+                param_list.append(sic_codes)
+            param_list.append(User_input.__get_companys_with_name())
+
+            return (param_list)
+    def function_type():
 
         print("\nYou are using (\"Get companie info\")")
         print("You can use the following functions:\n")
         print("(1)Get Company Details")
-        print("(2)Get Companies with sic code(s)\n")
-        print("(3)Get Comapnies with name requirement")
-        print("Type 1, 2 or 3")
+        print("(2)Get Companys with parameters")
+        print("Type 1 or 2")
         
         function = Input.input_int("Choose Function:", 2)
-
         if function == "1":
-            return ("Get Company Details", User_input.get_company_details())
-        elif function == "2":
-            return ("get_companys_with_Sic_Code", User_input.get_companys_with_sic_codes())
-        elif function == "3":
-            return ("get_companys_with_name", User_input.get_companys_with_name())
-        
-        assert False, +"(" +function + ") is not a function"
+            return function
+        if function == "2":
+            return function
+        else:     
+            assert False, "(" +function + ") is not a function"
         
         
     
     def get_company_details():
         print("Write the company number of the company you want the Details of")
-        if (testing):
-            comp_number = "11955470"
-        else:
-            comp_number = Input.input_int("Company number: ", 99999999)
+        comp_number = Input.input_int("Company number: ", 99999999)
         
         return comp_number
     
-    def get_companys_with_sic_codes():
+    #returns false if you gave no sic codes
+    def _get_companys_with_sic_codes():
         print("You Chose get_companys_with_Sic_Code.\nType done when finished")
         done = False
-        value =[]
+        sic_codes =[]
         while not done:
-            string = input("Sic Code: ")
-            try:
-                value.append(int(string))
-            except ValueError:
-                if string.lower() == "done":
+
+            code = input("Sic Code: ")
+            if (len(code) != 5) or (not code.isnumeric()):
+                print("f")
+                if code.lower() == "done":
                     done = True
+
+            else:
+                sic_codes.append(code)
+         
+        if sic_codes.__len__ () == 0:
+            return False
         
+        return "sic_codes",sic_codes
 
-        return value
-
-    def get_companys_with_name():
+    def __get_companys_with_name():
         print("Write a line of text that must be found in the name of all companies given")
-        return input("Name requerment: ")
+        return "company_name_includes",input("Name requerment: ")
     
         
         

@@ -8,15 +8,15 @@ Testing = False
 def main():
     not_finished = True
     while (not_finished):
-        function_and_input= User_input.functionType()
-
         try:
-            if function_and_input[0] == "Get Company Details":
-               Print.print_companie(Get_Info.get_company_info(function_and_input[1]))
-            elif function_and_input[0] == "get_companys_with_Sic_Code":
-                Print.write_company_list(Get_Info.get_companys_with_Sic_Code(function_and_input[1]))  
-            elif function_and_input[0] == "get_companys_with_name": 
-                Print.write_company_list(Get_Info.get_companys_with_name(function_and_input[1]))
+            function= User_input.function_type()
+            User_input.__get_companys_with_name()
+            if function == "1":
+                company_num = User_input.get_company_details()
+                Print.print_companie(Get_Info.get_company_info(company_num))
+            elif function == "2":
+                param = User_input.get_parameters()
+                Print.write_company_list(Get_Info.find_companys_with_parameters(param))  
             
         except AssertionError as fail:
             print("\n")

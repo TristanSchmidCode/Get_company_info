@@ -4,12 +4,8 @@ from my_classes.User_input import Input
 
 class Print():
 
-    write_path = ".\\Output\\companyhouse_info.json"
-
+    write_path = "companyhouse_info.json"
     def print_companie(json_string: str):
-        
-
-            
         info = json.loads(json_string)
         
         print("Choose the information you want to save")
@@ -46,11 +42,18 @@ class Print():
         file.close() 
               
     def write_company_list(json_string: str):
+
+        companies = json.loads(json_string) 
+
         #a dictionary holding all companies with with the specifications given
         #the key is the company name, and value is company number 
         comp_list = {}
-        companies = json.loads(json_string)          
-        for company in companies:
-            comp_list[company["company_name"]] = company["company_number"]
+        comp_list["items"] = {}
+        comp_list["total_hits"] = companies["hits"]
+
+
+        print(companies is dict)      
+        for company in companies["items"]:
+            comp_list["items"][company["company_name"]] = company["company_number"]
         file = open(Print.write_path,"w")
         file.write(json.dumps(comp_list, indent= 4))
