@@ -10,7 +10,6 @@ def main():
     while (not_finished):
         try:
             function= User_input.function_type()
-            User_input.__get_companys_with_name()
             if function == "1":
                 company_num = User_input.get_company_details()
                 Print.print_companie(Get_Info.get_company_info(company_num))
