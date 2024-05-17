@@ -16,7 +16,6 @@ def main():
             elif function == "2":
                 param = User_input.get_parameters()
                 Print.write_company_list(Get_Info.find_companys_with_parameters(param))  
-            
         except AssertionError as fail:
             print("\n")
             print(fail)

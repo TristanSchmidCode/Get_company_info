@@ -6,6 +6,7 @@ To use, you must first create a file api_key.txt and have the first line on it b
 With this program you can find companies that have a given:
 . list of sic codes 
 . string in its name
+. list of sic codes and string in its name
 
 With this program  you can also find information on a companie, using their companie number.
 

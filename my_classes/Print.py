@@ -51,8 +51,6 @@ class Print():
         comp_list["items"] = {}
         comp_list["total_hits"] = companies["hits"]
 
-
-        print(companies is dict)      
         for company in companies["items"]:
             comp_list["items"][company["company_name"]] = company["company_number"]
         file = open(Print.write_path,"w")

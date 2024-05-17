@@ -84,7 +84,6 @@ class User_input:
 
             code = input("Sic Code: ")
             if (len(code) != 5) or (not code.isnumeric()):
-                print("f")
                 if code.lower() == "done":
                     done = True
 
